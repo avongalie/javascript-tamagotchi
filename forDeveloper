@@ -1,0 +1,9 @@
+To play, a user will pick a pet type (Options: Dog,
+Cat, Rabbit) 
+and enter a name for the pet.
+Sleepiness increases every 5 seconds
+Hunger increases every 3 seconds
+Boredom increases every 2 seconds
+When a pet sleeps, the screen should become
+dark for 3 seconds.
+Age increases every 30 seconds.
