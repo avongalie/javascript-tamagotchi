@@ -1,5 +1,5 @@
-let input = document.getElementById("name");
-let startButton = document.getElementById("start");
+const input = document.getElementById("name");
+const startButton = document.getElementById("start");
 
 class Tamagotchi{
     constructor(name, age){
@@ -11,6 +11,12 @@ class Tamagotchi{
 let boredom = 0;
 let hunger = 0;
 let sleepiness = 0;
+let petDead = false;
+
+var bored;
+var hungry;
+var sleep;
+var petStatus;
 
 // begins the game with a new pet
 function startGame(){
@@ -18,6 +24,8 @@ function startGame(){
     let newPet = createPet(name);
     console.log(newPet)
     startIntervals();
+    petStatus = setInterval(checkPetStatus, 2000);
+    
 }
 
 
@@ -29,18 +37,30 @@ function createPet(name){
 
 //sets timer for boredom hunger and sleepiness;
 function startIntervals(){
-    var bored = setInterval(function(){
+    bored = setInterval(function(){
             boredom++;
-            console.log(`boredem: ${boredom}`);
-        },4000)
-    var hungry = setInterval(function(){
+            console.log(`boredom: ${boredom}`);
+        },2000)
+    hungry = setInterval(function(){
             hunger++;
             console.log(`hunger: ${hunger}`);
-        },6000)
-    var sleep = setInterval(function(){
+        },4000)
+    sleep = setInterval(function(){
         sleepiness++;
             console.log(`sleepiness: ${sleepiness}`);
-        },10000)
+        },6000)
+}
+
+//checks if pet is dead or not
+function checkPetStatus(){
+    if(boredom === 10 || hunger === 10 || sleepiness === 10){
+        //might not need petDead
+        petDead = true;
+        clearInterval(bored);
+        clearInterval(hungry);
+        clearInterval(sleep);
+        clearInterval(petStatus);
+    }
 }
 
 //starts game when button is clicked
