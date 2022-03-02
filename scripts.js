@@ -1,3 +1,5 @@
+const startPage = document.getElementById("startPage");
+const tamagotchiPage = document.getElementById("tamagotchi");
 const input = document.getElementById("name");
 const startButton = document.getElementById("start");
 const textHunger = document.getElementById("hunger");
@@ -31,6 +33,7 @@ function startGame(){
     console.log(newPet)
     startIntervals();
     petStatus = setInterval(checkPetStatus, 2000);
+    createOnclicks();
     
 }
 
@@ -69,7 +72,26 @@ function checkPetStatus(){
     }
 }
 
+//allows player to bring hunger sleepiness and boredom back to 0
+function createOnclicks(){
+    feedButton.onclick = (function(){
+        hunger = 0;
+        textHunger.innerText = `Hunger: ${hunger}`;
+    });
+    sleepButton.onclick = (function(){
+        sleepiness = 0;
+        textSleepiness.innerText = `Sleepiness: ${sleepiness}`;
+    });
+    playButton.onclick = (function(){
+        boredom = 0;
+        textBoredom.innerText = `Boredem: ${boredom}`;
+    });
+
+}
+
 //starts game when button is clicked
 startButton.onclick = function(){
+    startPage.classList.add("hidden");
+    tamagotchiPage.classList.remove("hidden");
     startGame();
 }

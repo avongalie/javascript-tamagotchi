@@ -6,17 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alexsia's Tamagotchi</title>
     <script src="scripts.js" async defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Pick a Pet</h1>
-    <p>Enter Pet Name: <input id="name"></p>
-    <button id="start">start</button>
-    <p>Pet Image</p>
-    <p id="hunger">Hunger: 0</p>
-    <p id="sleepiness">Sleepines: 0</p>
-    <p id="boredom">Boredom: 0</p>
-    <button id="feed">Feed</button>
-    <button id="sleep">Sleep</button>
-    <button id="play">Play</button>
+    <div id="startPage">
+        <h1>Pick a Pet</h1>
+        <img src="images/cat.png" class="choose">
+        <img src="images/dog.png" class="choose">
+        <img src="images/rabbit.png" class="choose">
+        <p>Enter Pet Name: <input id="name"></p>
+        <button id="start">start</button>
+    </div>
+    <div id="tamagotchi" class="hidden">
+        <p>Pet Image</p>
+        <p id="hunger">Hunger: 0</p>
+        <p id="sleepiness">Sleepiness: 0</p>
+        <p id="boredom">Boredom: 0</p>
+        <button id="feed">Feed</button>
+        <button id="sleep">Sleep</button>
+        <button id="play">Play</button>
+    </div>
 </body>
 </html>
