@@ -1,5 +1,11 @@
 const input = document.getElementById("name");
 const startButton = document.getElementById("start");
+const textHunger = document.getElementById("hunger");
+const textSleepiness = document.getElementById("sleepiness");
+const textBoredom = document.getElementById("boredom");
+const feedButton = document.getElementById('feed');
+const sleepButton = document.getElementById('sleep');
+const playButton = document.getElementById('play');
 
 class Tamagotchi{
     constructor(name, age){
@@ -39,15 +45,15 @@ function createPet(name){
 function startIntervals(){
     bored = setInterval(function(){
             boredom++;
-            console.log(`boredom: ${boredom}`);
+            textBoredom.innerText = `Boredem: ${boredom}`;
         },2000)
     hungry = setInterval(function(){
             hunger++;
-            console.log(`hunger: ${hunger}`);
+            textHunger.innerText = `Hunger: ${hunger}`;
         },4000)
     sleep = setInterval(function(){
         sleepiness++;
-            console.log(`sleepiness: ${sleepiness}`);
+            textSleepiness.innerText = `Sleepiness: ${sleepiness}`;
         },6000)
 }
 
