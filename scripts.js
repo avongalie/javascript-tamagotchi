@@ -9,11 +9,13 @@ const feedButton = document.getElementById('feed');
 const sleepButton = document.getElementById('sleep');
 const playButton = document.getElementById('play');
 const pets = document.querySelectorAll(".choose");
+const petPhoto = document.getElementById("pic");
 
 class Tamagotchi{
-    constructor(name, age){
+    constructor(name, age, choice){
         this.name = name;
         this.age = age;
+        this.choice = choice;
     }
 }
 
@@ -33,6 +35,7 @@ var currentPet;
 function startGame(){
     let name = input.value;
     let newPet = createPet(name);
+    setPetPhoto(petChoice);
     console.log(newPet)
     startIntervals();
     petStatus = setInterval(checkPetStatus, 2000);
@@ -43,9 +46,30 @@ function startGame(){
 
 //creates a new pet
 function createPet(name){
-    return new Tamagotchi(name, 0);
+    return new Tamagotchi(name, 0, petChoice);
 }
 
+//shows chosen pet on screen 
+function setPetPhoto(choice){
+    let picture = document.createElement("img");
+    switch(choice){
+        case 0:
+            picture.src = "images/cat.png";
+            picture.alt = "cat";
+            picture.style.height = "150px";
+            break;
+        case 1:
+            picture.src = "images/dog.png";
+            picture.alt = "dog";
+            picture.style.height = "150px";
+        case 2:
+            picture.src = "images/rabbit.png";
+            picture.alt = "rabbit";
+            picture.style.height = "150px";
+            
+    }
+    petPhoto.append(picture);
+}
 
 //sets timer for boredom hunger and sleepiness;
 function startIntervals(){
