@@ -8,6 +8,7 @@ const textBoredom = document.getElementById("boredom");
 const feedButton = document.getElementById('feed');
 const sleepButton = document.getElementById('sleep');
 const playButton = document.getElementById('play');
+const pets = document.querySelectorAll(".choose");
 
 class Tamagotchi{
     constructor(name, age){
@@ -21,10 +22,12 @@ let hunger = 0;
 let sleepiness = 0;
 let petDead = false;
 
+var petChoice;
 var bored;
 var hungry;
 var sleep;
 var petStatus;
+var currentPet;
 
 // begins the game with a new pet
 function startGame(){
@@ -95,3 +98,27 @@ startButton.onclick = function(){
     tamagotchiPage.classList.remove("hidden");
     startGame();
 }
+
+//creates borders around pets to be chosen
+function togglePet(){
+    pets[0].onclick = function(){
+        petChoice = 0;
+        pets[0].style.border = "1px solid red"
+        pets[1].style.border = "none"
+        pets[2].style.border = "none"
+    }
+    pets[1].onclick = function(){
+        petChoice = 1;
+        pets[0].style.border = "none"
+        pets[1].style.border = "1px solid red"
+        pets[2].style.border = "none"
+    }
+    pets[2].onclick = function(){
+        petChoice = 2;
+        pets[0].style.border = "none"
+        pets[1].style.border = "none"
+        pets[2].style.border = "1px solid red"
+    }
+}
+
+togglePet();
