@@ -35,6 +35,7 @@ var currentPet;
 function startGame(){
     let name = input.value;
     let newPet = createPet(name);
+    setPetName(newPet.name);
     setPetPhoto(petChoice);
     console.log(newPet)
     startIntervals();
@@ -69,6 +70,13 @@ function setPetPhoto(choice){
             
     }
     petPhoto.append(picture);
+}
+
+//shows chosen pet name on screen
+function setPetName(name){
+    let newPetName = document.createElement('h3');
+    newPetName.innerText = name;
+    petPhoto.append(newPetName);
 }
 
 //sets timer for boredom hunger and sleepiness;
