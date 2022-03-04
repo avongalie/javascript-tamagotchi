@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="startPage">
+    <!-- remov hidden class -->
+    <div id="startPage" class="hidden">
         <h1>Pick a Pet</h1>
         <img src="images/cat.png" alt="cat" class="choose">
         <img src="images/dog.png" alt="dog" class="choose">
@@ -17,10 +18,13 @@
         <p>Enter Pet Name: <input id="nameInput"></p>
         <button id="start">start</button>
     </div>
-    <div id="tamagotchi" class="hidden">
-        <h3 id="name"></h3>
+    <!-- class="hidden" -->
+    <div id="tamagotchi">
+        <!-- remove name -->
+        <h3 id="name">Test</h3>
         <p id="age">Age: 0</p>
-        <img id="pic">
+        <!-- remove img -->
+        <img id="pic" src="images/cat.png">
         <div id="stats">
             <p id="hunger">Hunger: 0</p>
             <p id="sleepiness">Sleepiness: 0</p>
@@ -32,7 +36,8 @@
             <button id="play">Play</button>
         </div>
         <br>
-        <button id="reset" class="hidden">Restart</button>
+        <!-- class="hidden" -->
+        <button id="reset" >Restart</button>
     </div>
 </body>
 </html>

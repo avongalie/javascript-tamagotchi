@@ -29,8 +29,8 @@ let hunger = 0;
 let sleepiness = 0;
 let age = 0;
 let petDead = false;
+let petChoice = -1;
 
-var petChoice;
 var boredomInterval;  
 var hungerInterval; 
 var sleepinessInterval;
@@ -179,6 +179,7 @@ function runawayPet(){
     resetButton.onclick = restartGame;
 }
 
+//kills pet
 function killPet(){
     petPhoto.src = "images/skull.png";
     nameh3.innerText = `Your pet died at age ${age} from old age.`;
@@ -207,13 +208,16 @@ function restartGame(){
     textAge.classList.remove("hidden");
     nameInput.value = "";
     pets[petChoice].style.border = "none"
+    petChoice = -1;
 }
 
 //starts game when button is clicked
 startButton.onclick = function(){
+    if(petChoice === -1 || nameInput.value.trim() === "") return;
     startPage.classList.add("hidden");
     tamagotchiPage.classList.remove("hidden");
     startGame();
+    
 }
 
 togglePet();

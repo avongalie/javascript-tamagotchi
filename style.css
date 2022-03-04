@@ -1,7 +1,18 @@
+
+body{
+    text-align: center;
+}
+
+
 .hidden{
     display: none;
+}
+img {
+    height: 150px;
 }
 .choose {
     height: 150px;
     margin-right: 30px;
 }
+
+
