@@ -9,9 +9,12 @@ const textAge = document.getElementById("age");
 const feedButton = document.getElementById('feed');
 const sleepButton = document.getElementById('sleep');
 const playButton = document.getElementById('play');
+const resetButton = document.getElementById("reset")
 const pets = document.querySelectorAll(".choose");
 const petPhoto = document.getElementById("pic");
 const nameh3 = document.getElementById("name");
+const stats = document.getElementById("stats");
+const buttons = document.getElementById("buttons");
 
 class Tamagotchi{
     constructor(name, age, choice){
@@ -111,6 +114,7 @@ function checkPetStatus(){
             clearInterval(hungerInterval);
             clearInterval(sleepinessInterval);
             clearInterval(petStatus);
+            clearInterval(ageInterval)
             killPet();
         }
     }, 2000);
@@ -156,9 +160,14 @@ function togglePet(){
     }
 }
 
+//enables pet running away
 function killPet(){
     petPhoto.src = "images/runAway.gif";
-    nameh3.innerText = "Oh no your pet ran away!"
+    nameh3.innerText = `Oh no your pet ran away at age ${age}!`;
+    stats.classList.add("hidden");
+    buttons.classList.add("hidden");
+    textAge.classList.add("hidden");
+    resetButton.classList.remove("hidden");
 }
 
 //starts game when button is clicked
