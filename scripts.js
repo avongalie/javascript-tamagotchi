@@ -1,6 +1,6 @@
 const startPage = document.getElementById("startPage");
 const tamagotchiPage = document.getElementById("tamagotchi");
-const input = document.getElementById("name");
+const nameInput = document.getElementById("name");
 const startButton = document.getElementById("start");
 const textHunger = document.getElementById("hunger");
 const textSleepiness = document.getElementById("sleepiness");
@@ -25,21 +25,21 @@ let sleepiness = 0;
 let petDead = false;
 
 var petChoice;
-var bored;
-var hungry;
+var bored;  
+var hungry; 
 var sleep;
 var petStatus;
 var currentPet;
 
 // begins the game with a new pet
 function startGame(){
-    let name = input.value;
+    let name = nameInput.value;
     let newPet = createPet(name);
     setPetName(newPet.name);
     setPetPhoto(petChoice);
-    console.log(newPet)
+    //console.log(newPet)
     startIntervals();
-    petStatus = setInterval(checkPetStatus, 2000);
+    checkPetStatus();
     createOnclicks();
     
 }
@@ -97,14 +97,17 @@ function startIntervals(){
 
 //checks if pet is dead or not
 function checkPetStatus(){
-    if(boredom === 10 || hunger === 10 || sleepiness === 10){
-        //might not need petDead
-        petDead = true;
-        clearInterval(bored);
-        clearInterval(hungry);
-        clearInterval(sleep);
-        clearInterval(petStatus);
-    }
+    petStatus = setInterval(function(){
+        if(boredom === 10 || hunger === 10 || sleepiness === 10){
+            //might not need petDead
+            petDead = true;
+            clearInterval(bored);
+            clearInterval(hungry);
+            clearInterval(sleep);
+            clearInterval(petStatus);
+        }
+    }, 2000);
+    
 }
 
 //allows player to bring hunger sleepiness and boredom back to 0
@@ -122,13 +125,6 @@ function createOnclicks(){
         textBoredom.innerText = `Boredem: ${boredom}`;
     });
 
-}
-
-//starts game when button is clicked
-startButton.onclick = function(){
-    startPage.classList.add("hidden");
-    tamagotchiPage.classList.remove("hidden");
-    startGame();
 }
 
 //creates borders around pets to be chosen
@@ -151,6 +147,13 @@ function togglePet(){
         pets[1].style.border = "none"
         pets[2].style.border = "1px solid red"
     }
+}
+
+//starts game when button is clicked
+startButton.onclick = function(){
+    startPage.classList.add("hidden");
+    tamagotchiPage.classList.remove("hidden");
+    startGame();
 }
 
 togglePet();
