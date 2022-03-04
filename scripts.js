@@ -5,6 +5,7 @@ const startButton = document.getElementById("start");
 const textHunger = document.getElementById("hunger");
 const textSleepiness = document.getElementById("sleepiness");
 const textBoredom = document.getElementById("boredom");
+const textAge = document.getElementById("age");
 const feedButton = document.getElementById('feed');
 const sleepButton = document.getElementById('sleep');
 const playButton = document.getElementById('play');
@@ -22,12 +23,14 @@ class Tamagotchi{
 let boredom = 0;
 let hunger = 0;
 let sleepiness = 0;
+let age = 0;
 let petDead = false;
 
 var petChoice;
-var bored;  
-var hungry; 
-var sleep;
+var boredomInterval;  
+var hungerInterval; 
+var sleepinessInterval;
+var ageInterval;
 var petStatus;
 var currentPet;
 
@@ -81,19 +84,24 @@ function setPetName(name){
 
 //sets timer for boredom hunger and sleepiness;
 function startIntervals(){
-    bored = setInterval(function(){
+    boredomInterval = setInterval(function(){
             boredom++;
             textBoredom.innerText = `Boredem: ${boredom}`;
         },2000)
-    hungry = setInterval(function(){
+    hungerInterval = setInterval(function(){
             hunger++;
             textHunger.innerText = `Hunger: ${hunger}`;
         },4000)
-    sleep = setInterval(function(){
+    sleepinessInterval = setInterval(function(){
         sleepiness++;
             textSleepiness.innerText = `Sleepiness: ${sleepiness}`;
         },6000)
+    ageInterval = setInterval(function(){
+        age++;
+        textAge.innerText = `Age: ${age}`;
+    },20000)
 }
+
 
 //checks if pet is dead or not
 function checkPetStatus(){
@@ -101,9 +109,9 @@ function checkPetStatus(){
         if(boredom === 10 || hunger === 10 || sleepiness === 10){
             //might not need petDead
             petDead = true;
-            clearInterval(bored);
-            clearInterval(hungry);
-            clearInterval(sleep);
+            clearInterval(boredomInterval);
+            clearInterval(hungerInterval);
+            clearInterval(sleepinessInterval);
             clearInterval(petStatus);
         }
     }, 2000);
