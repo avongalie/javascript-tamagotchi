@@ -100,7 +100,7 @@ function startIntervals(){
     ageInterval = setInterval(function(){
         age++;
         textAge.innerText = `Age: ${age}`;
-    },20000)
+    },19000)
 }
 
 
@@ -110,15 +110,23 @@ function checkPetStatus(){
         if(boredom === 10 || hunger === 10 || sleepiness === 10){
             //might not need petDead
             petDead = true;
-            clearInterval(boredomInterval);
-            clearInterval(hungerInterval);
-            clearInterval(sleepinessInterval);
-            clearInterval(petStatus);
-            clearInterval(ageInterval)
-            killPet();
+            endIntervals();
+            runawayPet();
+        }
+        if(age = 20){
+
         }
     }, 2000);
     
+}
+
+//ends intervals
+function endIntervals(){
+    clearInterval(boredomInterval);
+    clearInterval(hungerInterval);
+    clearInterval(sleepinessInterval);
+    clearInterval(petStatus);
+    clearInterval(ageInterval)
 }
 
 //allows player to bring hunger sleepiness and boredom back to 0
@@ -161,13 +169,34 @@ function togglePet(){
 }
 
 //enables pet running away
-function killPet(){
+function runawayPet(){
     petPhoto.src = "images/runAway.gif";
     nameh3.innerText = `Oh no your pet ran away at age ${age}!`;
     stats.classList.add("hidden");
     buttons.classList.add("hidden");
     textAge.classList.add("hidden");
     resetButton.classList.remove("hidden");
+    resetButton.onclick = restartGame;
+}
+
+//resets game
+function restartGame(){
+    boredom = 0;
+    sleepiness = 0;
+    hunger = 0;
+    age = 0;
+    textAge.innerText = `Age: ${age}`;
+    textBoredom.innerText = `Boredem: ${boredom}`;
+    textHunger.innerText = `Hunger: ${hunger}`;
+    textSleepiness.innerText = `Sleepiness: ${sleepiness}`;
+    resetButton.classList.add("hidden");
+    startPage.classList.remove("hidden");
+    tamagotchiPage.classList.add("hidden");
+    stats.classList.remove("hidden");
+    buttons.classList.remove("hidden");
+    textAge.classList.remove("hidden");
+    nameInput.value = "";
+    pets[petChoice].style.border = "none"
 }
 
 //starts game when button is clicked
