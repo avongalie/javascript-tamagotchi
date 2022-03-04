@@ -1,6 +1,6 @@
 const startPage = document.getElementById("startPage");
 const tamagotchiPage = document.getElementById("tamagotchi");
-const nameInput = document.getElementById("name");
+const nameInput = document.getElementById("nameInput");
 const startButton = document.getElementById("start");
 const textHunger = document.getElementById("hunger");
 const textSleepiness = document.getElementById("sleepiness");
@@ -11,6 +11,7 @@ const sleepButton = document.getElementById('sleep');
 const playButton = document.getElementById('play');
 const pets = document.querySelectorAll(".choose");
 const petPhoto = document.getElementById("pic");
+const nameh3 = document.getElementById("name");
 
 class Tamagotchi{
     constructor(name, age, choice){
@@ -55,31 +56,28 @@ function createPet(name){
 
 //shows chosen pet on screen 
 function setPetPhoto(choice){
-    let picture = document.createElement("img");
     switch(choice){
         case 0:
-            picture.src = "images/cat.png";
-            picture.alt = "cat";
-            picture.style.height = "150px";
+            petPhoto.src = "images/cat.png";
+            petPhoto.alt = "cat";
+            petPhoto.style.height = "150px";
             break;
         case 1:
-            picture.src = "images/dog.png";
-            picture.alt = "dog";
-            picture.style.height = "150px";
+            petPhoto.src = "images/dog.png";
+            petPhoto.alt = "dog";
+            petPhoto.style.height = "150px";
+            break;
         case 2:
-            picture.src = "images/rabbit.png";
-            picture.alt = "rabbit";
-            picture.style.height = "150px";
+            petPhoto.src = "images/rabbit.png";
+            petPhoto.alt = "rabbit";
+            petPhoto.style.height = "150px";
             
     }
-    petPhoto.append(picture);
 }
 
 //shows chosen pet name on screen
 function setPetName(name){
-    let newPetName = document.createElement('h3');
-    newPetName.innerText = name;
-    petPhoto.append(newPetName);
+    nameh3.innerText = name;
 }
 
 //sets timer for boredom hunger and sleepiness;
@@ -113,6 +111,7 @@ function checkPetStatus(){
             clearInterval(hungerInterval);
             clearInterval(sleepinessInterval);
             clearInterval(petStatus);
+            killPet();
         }
     }, 2000);
     
@@ -155,6 +154,11 @@ function togglePet(){
         pets[1].style.border = "none"
         pets[2].style.border = "1px solid red"
     }
+}
+
+function killPet(){
+    petPhoto.src = "images/runAway.gif";
+    nameh3.innerText = "Oh no your pet ran away!"
 }
 
 //starts game when button is clicked
