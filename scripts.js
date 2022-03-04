@@ -113,8 +113,8 @@ function checkPetStatus(){
             endIntervals();
             runawayPet();
         }
-        if(age = 20){
-
+        if(age === 20){
+            killPet();
         }
     }, 2000);
     
@@ -172,6 +172,16 @@ function togglePet(){
 function runawayPet(){
     petPhoto.src = "images/runAway.gif";
     nameh3.innerText = `Oh no your pet ran away at age ${age}!`;
+    stats.classList.add("hidden");
+    buttons.classList.add("hidden");
+    textAge.classList.add("hidden");
+    resetButton.classList.remove("hidden");
+    resetButton.onclick = restartGame;
+}
+
+function killPet(){
+    petPhoto.src = "images/skull.png";
+    nameh3.innerText = `Your pet died at age ${age} from old age.`;
     stats.classList.add("hidden");
     buttons.classList.add("hidden");
     textAge.classList.add("hidden");
