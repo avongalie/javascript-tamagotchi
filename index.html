@@ -10,21 +10,34 @@
 </head>
 <body>
     <div id="startPage">
-        <h1>Pick a Pet</h1>
+        <h1>Alexsia's Tamagotchi Game</h1>
+        <h2>Pick a Pet</h2>
         <img src="images/cat.png" alt="cat" class="choose">
         <img src="images/dog.png" alt="dog" class="choose">
         <img src="images/rabbit.png" alt="rabbit" class="choose">
-        <p>Enter Pet Name: <input id="name"></p>
-        <button id="start">start</button>
+        <p>Enter Pet Name: <input id="nameInput"></p>
+        <button id="start">START</button>
     </div>
+    <div id="color1"></div>
+        <div id="color2"></div>
+        <div id="color3"></div>
+        <div id="color4"></div>
     <div id="tamagotchi" class="hidden">
-        <div id="pic"></div>
-        <p id="hunger">Hunger: 0</p>
-        <p id="sleepiness">Sleepiness: 0</p>
-        <p id="boredom">Boredom: 0</p>
-        <button id="feed">Feed</button>
-        <button id="sleep">Sleep</button>
-        <button id="play">Play</button>
+        <h2 id="name"></h2>
+        <p id="age">Age: 0</p>
+        <img id="pic">
+        <div id="stats">
+            <p id="hunger">Hunger: 0</p>
+            <p id="sleepiness">Sleepiness: 0</p>
+            <p id="boredom">Boredom: 0</p>
+        </div>
+        <div id="buttons">
+            <button id="feed">Feed</button>
+            <button id="sleep">Sleep</button>
+            <button id="play">Play</button>
+        </div>
+        <br>
+        <button id="reset" class="hidden">Restart</button>
     </div>
 </body>
 </html>

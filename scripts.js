@@ -1,15 +1,26 @@
 const startPage = document.getElementById("startPage");
 const tamagotchiPage = document.getElementById("tamagotchi");
-const nameInput = document.getElementById("name");
+const nameInput = document.getElementById("nameInput");
 const startButton = document.getElementById("start");
 const textHunger = document.getElementById("hunger");
 const textSleepiness = document.getElementById("sleepiness");
 const textBoredom = document.getElementById("boredom");
+const textAge = document.getElementById("age");
 const feedButton = document.getElementById('feed');
 const sleepButton = document.getElementById('sleep');
 const playButton = document.getElementById('play');
+const resetButton = document.getElementById("reset")
 const pets = document.querySelectorAll(".choose");
 const petPhoto = document.getElementById("pic");
+const nameh3 = document.getElementById("name");
+const stats = document.getElementById("stats");
+const buttons = document.getElementById("buttons");
+
+const color1 = document.getElementById("color1");
+const color2 = document.getElementById("color2");
+const color3 = document.getElementById("color3");
+const color4 = document.getElementById("color4");
+
 
 class Tamagotchi{
     constructor(name, age, choice){
@@ -22,12 +33,14 @@ class Tamagotchi{
 let boredom = 0;
 let hunger = 0;
 let sleepiness = 0;
+let age = 0;
 let petDead = false;
+let petChoice = -1;
 
-var petChoice;
-var bored;  
-var hungry; 
-var sleep;
+var boredomInterval;  
+var hungerInterval; 
+var sleepinessInterval;
+var ageInterval;
 var petStatus;
 var currentPet;
 
@@ -52,48 +65,50 @@ function createPet(name){
 
 //shows chosen pet on screen 
 function setPetPhoto(choice){
-    let picture = document.createElement("img");
     switch(choice){
         case 0:
-            picture.src = "images/cat.png";
-            picture.alt = "cat";
-            picture.style.height = "150px";
+            petPhoto.src = "images/cat.png";
+            petPhoto.alt = "cat";
+            petPhoto.style.height = "150px";
             break;
         case 1:
-            picture.src = "images/dog.png";
-            picture.alt = "dog";
-            picture.style.height = "150px";
+            petPhoto.src = "images/dog.png";
+            petPhoto.alt = "dog";
+            petPhoto.style.height = "150px";
+            break;
         case 2:
-            picture.src = "images/rabbit.png";
-            picture.alt = "rabbit";
-            picture.style.height = "150px";
+            petPhoto.src = "images/rabbit.png";
+            petPhoto.alt = "rabbit";
+            petPhoto.style.height = "150px";
             
     }
-    petPhoto.append(picture);
 }
 
 //shows chosen pet name on screen
 function setPetName(name){
-    let newPetName = document.createElement('h3');
-    newPetName.innerText = name;
-    petPhoto.append(newPetName);
+    nameh3.innerText = name;
 }
 
 //sets timer for boredom hunger and sleepiness;
 function startIntervals(){
-    bored = setInterval(function(){
+    boredomInterval = setInterval(function(){
             boredom++;
             textBoredom.innerText = `Boredem: ${boredom}`;
         },2000)
-    hungry = setInterval(function(){
+    hungerInterval = setInterval(function(){
             hunger++;
             textHunger.innerText = `Hunger: ${hunger}`;
         },4000)
-    sleep = setInterval(function(){
+    sleepinessInterval = setInterval(function(){
         sleepiness++;
             textSleepiness.innerText = `Sleepiness: ${sleepiness}`;
         },6000)
+    ageInterval = setInterval(function(){
+        age++;
+        textAge.innerText = `Age: ${age}`;
+    },19000)
 }
+
 
 //checks if pet is dead or not
 function checkPetStatus(){
@@ -101,13 +116,23 @@ function checkPetStatus(){
         if(boredom === 10 || hunger === 10 || sleepiness === 10){
             //might not need petDead
             petDead = true;
-            clearInterval(bored);
-            clearInterval(hungry);
-            clearInterval(sleep);
-            clearInterval(petStatus);
+            endIntervals();
+            runawayPet();
+        }
+        if(age === 20){
+            killPet();
         }
     }, 2000);
     
+}
+
+//ends intervals
+function endIntervals(){
+    clearInterval(boredomInterval);
+    clearInterval(hungerInterval);
+    clearInterval(sleepinessInterval);
+    clearInterval(petStatus);
+    clearInterval(ageInterval)
 }
 
 //allows player to bring hunger sleepiness and boredom back to 0
@@ -149,11 +174,74 @@ function togglePet(){
     }
 }
 
+//enables pet running away
+function runawayPet(){
+    petPhoto.src = "images/runAway.gif";
+    nameh3.innerText = `Oh no your pet ran away at age ${age}!`;
+    petPhoto.style.float = "none";
+    petPhoto.style.marginRight = "0";
+    stats.classList.add("hidden");
+    buttons.classList.add("hidden");
+    textAge.classList.add("hidden");
+    resetButton.classList.remove("hidden");
+    resetButton.onclick = restartGame;
+}
+
+//kills pet
+function killPet(){
+    petPhoto.src = "images/skull.png";
+    nameh3.innerText = `Your pet died at age ${age} from old age.`;
+    petPhoto.style.float = "none";
+    petPhoto.style.marginRight = "0";
+    stats.classList.add("hidden");
+    buttons.classList.add("hidden");
+    textAge.classList.add("hidden");
+    resetButton.classList.remove("hidden");
+    resetButton.onclick = restartGame;
+}
+
+//resets game
+function restartGame(){
+    boredom = 0;
+    sleepiness = 0;
+    hunger = 0;
+    age = 0;
+    textAge.innerText = `Age: ${age}`;
+    textBoredom.innerText = `Boredem: ${boredom}`;
+    textHunger.innerText = `Hunger: ${hunger}`;
+    textSleepiness.innerText = `Sleepiness: ${sleepiness}`;
+    petPhoto.style.float = "right";
+    petPhoto.style.marginRight = "20%";
+    resetButton.classList.add("hidden");
+    startPage.classList.remove("hidden");
+    tamagotchiPage.classList.add("hidden");
+    stats.classList.remove("hidden");
+    buttons.classList.remove("hidden");
+    textAge.classList.remove("hidden");
+    nameInput.value = "";
+    pets[petChoice].style.border = "none"
+    petChoice = -1;
+}
+
 //starts game when button is clicked
 startButton.onclick = function(){
+    if(petChoice === -1 || nameInput.value.trim() === "") return;
     startPage.classList.add("hidden");
     tamagotchiPage.classList.remove("hidden");
     startGame();
+    
 }
 
+color1.onclick = function(){
+    document.body.style.backgroundColor = "antiquewhite";
+}
+color2.onclick = function(){
+    document.body.style.backgroundColor = "plum";
+}
+color3.onclick = function(){
+    document.body.style.backgroundColor = "lightsalmon";
+}
+color4.onclick = function(){
+    document.body.style.backgroundColor = "palegreen";
+}
 togglePet();
