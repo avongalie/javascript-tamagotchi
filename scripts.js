@@ -16,6 +16,12 @@ const nameh3 = document.getElementById("name");
 const stats = document.getElementById("stats");
 const buttons = document.getElementById("buttons");
 
+const color1 = document.getElementById("color1");
+const color2 = document.getElementById("color2");
+const color3 = document.getElementById("color3");
+const color4 = document.getElementById("color4");
+
+
 class Tamagotchi{
     constructor(name, age, choice){
         this.name = name;
@@ -172,6 +178,8 @@ function togglePet(){
 function runawayPet(){
     petPhoto.src = "images/runAway.gif";
     nameh3.innerText = `Oh no your pet ran away at age ${age}!`;
+    petPhoto.style.float = "none";
+    petPhoto.style.marginRight = "0";
     stats.classList.add("hidden");
     buttons.classList.add("hidden");
     textAge.classList.add("hidden");
@@ -183,6 +191,8 @@ function runawayPet(){
 function killPet(){
     petPhoto.src = "images/skull.png";
     nameh3.innerText = `Your pet died at age ${age} from old age.`;
+    petPhoto.style.float = "none";
+    petPhoto.style.marginRight = "0";
     stats.classList.add("hidden");
     buttons.classList.add("hidden");
     textAge.classList.add("hidden");
@@ -200,6 +210,8 @@ function restartGame(){
     textBoredom.innerText = `Boredem: ${boredom}`;
     textHunger.innerText = `Hunger: ${hunger}`;
     textSleepiness.innerText = `Sleepiness: ${sleepiness}`;
+    petPhoto.style.float = "right";
+    petPhoto.style.marginRight = "20%";
     resetButton.classList.add("hidden");
     startPage.classList.remove("hidden");
     tamagotchiPage.classList.add("hidden");
@@ -220,4 +232,16 @@ startButton.onclick = function(){
     
 }
 
+color1.onclick = function(){
+    document.body.style.backgroundColor = "antiquewhite";
+}
+color2.onclick = function(){
+    document.body.style.backgroundColor = "plum";
+}
+color3.onclick = function(){
+    document.body.style.backgroundColor = "lightsalmon";
+}
+color4.onclick = function(){
+    document.body.style.backgroundColor = "palegreen";
+}
 togglePet();
