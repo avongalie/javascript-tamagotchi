@@ -114,3 +114,16 @@ img {
     border: 1px solid black;
 }
 
+#social {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}
+#social > a {
+    color: black;
+    text-decoration: none;
+}
+#social > a:hover{
+    color: purple;
+    text-decoration: underline;
+}
