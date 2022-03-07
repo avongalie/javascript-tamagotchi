@@ -93,7 +93,7 @@ function setPetName(name){
 function startIntervals(){
     boredomInterval = setInterval(function(){
             boredom++;
-            textBoredom.innerText = `Boredem: ${boredom}`;
+            textBoredom.innerText = `Boredom: ${boredom}`;
         },2000)
     hungerInterval = setInterval(function(){
             hunger++;
@@ -150,7 +150,7 @@ function createOnclicks(){
     playButton.onclick = (function(){
         if(boredom === 0) return;
         boredom--;
-        textBoredom.innerText = `Boredem: ${boredom}`;
+        textBoredom.innerText = `Boredom: ${boredom}`;
     });
 
 }
