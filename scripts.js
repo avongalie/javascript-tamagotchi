@@ -135,18 +135,21 @@ function endIntervals(){
     clearInterval(ageInterval)
 }
 
-//allows player to bring hunger sleepiness and boredom back to 0
+//allows player to bring hunger sleepiness and boredom down by 1
 function createOnclicks(){
     feedButton.onclick = (function(){
-        hunger = 0;
+        if(hunger === 0) return;
+        hunger--;
         textHunger.innerText = `Hunger: ${hunger}`;
     });
     sleepButton.onclick = (function(){
-        sleepiness = 0;
+        if(sleepiness === 0) return;
+        sleepiness--;
         textSleepiness.innerText = `Sleepiness: ${sleepiness}`;
     });
     playButton.onclick = (function(){
-        boredom = 0;
+        if(boredom === 0) return;
+        boredom--;
         textBoredom.innerText = `Boredem: ${boredom}`;
     });
 
